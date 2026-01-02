@@ -1,0 +1,68 @@
+Problem: 100 Boxes Per Day
+    At work, you sort 100 boxes per day. Each box has one of three colours: red, blue, or green. The boxes come
+through a slot, so you cannot see what boxes have yet to come. You want to take as many boxes home as possible,
+but you only have two bins to store them in. The boxes that are placed inside bins are also more valuable than later boxes.
+Specifically: the value of a box is equal to 1 * decay_rate ^ (i), where i is the order of the box that you recieved.
+Unfortunately, although the bins are not limited in capacity, yo umust cannot have two boxes of different colours be in the same bin.
+
+    Thankfully, a coworker told you the distribution of the box colours but forgot to specify the colours. All you have
+are three integers that add up to 100. When you receive a box, you can do three things. First, you can choose to
+empty either bin you have, discarding all boxes inside it. After that, you can place the box into a bin that is either
+empty or contains only boxes of the specified colour. Alternatively, you can simply discard the current box.
+You suspect that these boxes are valuable, so you want to keep as many as possible. Today, you start with two empty boxes. 
+Find a way to maximize the total value of the boxes you collect.
+
+Interaction:
+
+For the day you work, you will receive a line with three integers: A, B, and C, indicating that there are A boxes
+of some colour, B boxes of another colour, and C of the remaining colour. It is guaranteed that 0 <= A, B, C <= 100
+and A+B+C = 100. Then, you will receive the decay_rate, a floating point real number less than 1 but greater than 0. 
+
+Then, you will start your hour of work. You will be given a line with a single character, one of “R”, “G”, or “B”,
+indicating the colour of the current box. Then you may empty either bin, with “EMPTY 1” or “EMPTY 2”. You may
+empty either bin as many times as you’d like. Then, either output “PLACE x” where x is the bin to place the box
+into, or output “DISCARD” to discard the current box. In any case, after printing each line, remember to output a
+newline character and flush the output.
+
+If at any point you output an invalid instruction or put two boxes of different colours in one bin, you will receive
+a line with a single integer, -1. At this point, your program should terminate, and you will receive a score of 0.
+
+Furthermore, the test cases are not random in any way. They are pre-generated to cover the worst possible cases.
+
+Producing an algorithm that always generates optimal solutions is very difficult, so your solution only needs to be "good enough". The higher value of the boxes you collected, the higher your score.
+Your final score will be calculated as the average of 100 * clamp((your_value-base_line)/(best_value-base_line), 0, 1) across all test cases.
+
+Time limit: 2 seconds
+
+Memory Limit: 1024 MB
+
+
+Example Input: 
+5 2 3
+G
+G
+B
+B
+G
+G
+R
+G
+B
+R
+Example Output:
+PLACE 2
+PLACE 1
+EMPTY 1
+PLACE 1
+EMPTY 2
+EMPTY 1
+PLACE 2
+DISCARD
+DISCARD
+PLACE 1
+DISCARD
+PLACE 2
+PLACE 1
+
+Note: 
+The sample interaction shows a valid exchange, as A + B + C = 10. It will not appear in any of the test cases.
